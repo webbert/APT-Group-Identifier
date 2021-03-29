@@ -1,18 +1,19 @@
 import requests.certs
 from bs4 import BeautifulSoup
 from .MITRE_Scraper import Scraper
+from .SQL_Conn import SQL_Conn
 
 GROUPS_URL = "https://attack.mitre.org/groups/"
 INDEX_ZERO = 0
 INDEX_ONE = 1
 
 
-class APT_Info(Scraper):
+class APT_Info(Scraper, SQL_Conn):
     def __init__(self):
         super().__init__()
 
     def all(self, filename=None):
-        res_df = self.display_all(self, filename)
+        res_df = self.display_all(filename)
         return res_df
 
     def display_apt_info(self, group_name):
@@ -32,10 +33,9 @@ class APT_Info(Scraper):
                 res_df.loc[:, key[INDEX_ZERO]] = key[INDEX_ONE]
             else:
                 continue
-        for index in range(len(attack_matrix_information_tables)): 
+        for index in range(len(attack_matrix_information_tables)):
             temp_information_table = attack_matrix_information_tables[index]
             list_of_lists_for_data_per_column = []
-            temp_dict = {}
             column_names = temp_information_table.find_all("th")
             for index_0 in range(len(column_names)):
                 list_of_lists_for_data_per_column.append([])
@@ -47,14 +47,18 @@ class APT_Info(Scraper):
                     main_link = data.pop(1).text
                     add_link = data[1].text
                     new_link = main_link + "/" + add_link
-                    data[1].string = new_link
+                    dsata[1].string = new_link
                 for index_2 in range(len(data)):
                     # print(data[index_2])
                     # input("asd")
                     if data[index_2].find("a"):
-                        list_of_lists_for_data_per_column[index_2].append(data[index_2].find("a").text + ":" + data[index_2].find("a")["href"])
+                        list_of_lists_for_data_per_column[index_2].append(
+                            data[index_2].find("a").text + ":" + data[index_2].find("a")["href"])
                     else:
-                        list_of_lists_for_data_per_column[index_2].append(data[index_2].text.replace("\n", " ").strip(" "))
-            temp_dict = tuple(zip(*list_of_lists_for_data_per_column))
-            res_df.loc[:, headers[index].text] = [temp_dict]
+                        list_of_lists_for_data_per_column[index_2].append(
+                            data[index_2].text.replace("\n", " ").strip(" "))
+            zipped_iter = list(zip(*list_of_lists_for_data_per_column))
+            formatted_str = self.iterator_to_string(zipped_iter)
+            res_df.loc[:, headers[index].text] = [formatted_str]
+        self.conn(res_df, group_name)
         return res_df
