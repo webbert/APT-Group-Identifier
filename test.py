@@ -1,12 +1,15 @@
-from MITRE import APT_Info
+from MITRE import APT_Info, SQL_Conn
 
 
 def main():
     y = APT_Info()
-    print(y.all())
-    res_df = y.display_apt_info("APT33")
-    res_df.to_csv("res.csv")
-    print(res_df)
+    # res_df = y.all()
+    # res_df.to_csv("res.csv")
+    res_df = y.display_apt_info("Dragonfly")
+    # res_df.to_csv("res.csv")
+    for index in res_df.keys():
+        print(res_df[index])
+        res_df[index].to_csv(f"res{index}.csv")
 
 
 if __name__ == "__main__":

@@ -21,8 +21,7 @@ INDEX_ONE = 1
 
 class Scraper(Utilities):
     def __init__(self):
-        self.mitre_grp_url = GROUPS_URL
-        self.overview_df = self.find_MITRE_table_data(self.mitre_grp_url)
+        self.overview_df = self.find_MITRE_table_data(GROUPS_URL)
 
     def find_MITRE_table_data(self, url):
         results_dict = {
@@ -42,11 +41,12 @@ class Scraper(Utilities):
                 results_dict["Associated Groups"].append(None)
             else:
                 assoc_grps = assoc_grps.split(",")
-                assoc_grps_str = self.iterator_to_string(assoc_grps)
+                assoc_grps_str = self.iterator_to_str_or_df(assoc_grps)
                 results_dict["Associated Groups"].append(assoc_grps_str)
             results_dict["Description"].append(description)
             results_dict["ID"].append(a_object["href"].strip("/groups/"))
             overview_df = pd.DataFrame(results_dict)
+        overview_df.set_index(['Name'], inplace=True)
         return overview_df
 
     def display_all(self, filename=None):
@@ -60,7 +60,7 @@ class Scraper(Utilities):
                 f"{filename} could not be save as directory does not exist.")
 
     def find(self, group_name):
-        res_df = self.overview_df.loc[self.overview_df["Name"] == group_name]
+        res_df = self.overview_df.loc[[group_name]]
         if res_df.empty:
             return None
         else:
