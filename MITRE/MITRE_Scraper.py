@@ -21,9 +21,22 @@ INDEX_ONE = 1
 
 class Scraper(Utilities):
     def __init__(self):
+        """
+        Creates the overall MITRE APT Groups table of basic information.
+        """
         self.overview_df = self.find_MITRE_table_data(GROUPS_URL)
 
     def find_MITRE_table_data(self, url):
+        """Generates a dataframe with basic information of the different APT
+        Groups
+
+        Args:
+            url (constant str): Link to MITRE Attack Framework groups url
+
+        Returns:
+            Pandas.Dataframe: Overview dataframe containing basic information
+            of the different APTs
+        """
         results_dict = {
             "Name": [], "Associated Groups": [], 'Description': [], "ID": []}
         mitre_html_group = requests.get(url)
@@ -50,6 +63,18 @@ class Scraper(Utilities):
         return overview_df
 
     def display_all(self, filename=None):
+        """Converts the dataframe to a csv if specified, returns the overall
+        basic information dataframe.
+
+        Args:
+            filename (str, optional): Filename. Defaults to None.
+
+        Raises:
+            FileNotFoundError: Raise error if file name not found
+
+        Returns:
+            Pandas.DataFrame: Overview and basic information of all the APTs.
+        """
         try:
             if filename is not None:
                 self.overview_df.to_csv(filename)
@@ -60,6 +85,14 @@ class Scraper(Utilities):
                 f"{filename} could not be save as directory does not exist.")
 
     def find(self, group_name):
+        """Finds the basic information of the specific APT group.
+
+        Args:
+            group_name (str): APT group name
+
+        Returns:
+            Pandas.DataFrame: The selected APT group Pandas DataFrame.
+        """
         res_df = self.overview_df.loc[[group_name]]
         if res_df.empty:
             return None

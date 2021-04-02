@@ -1,4 +1,4 @@
-from MITRE import APT_Info, SQL_Conn
+from MITRE import APT_Info
 
 
 def main():

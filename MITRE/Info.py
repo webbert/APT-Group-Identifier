@@ -1,4 +1,11 @@
-import requests.certs
+"""
+Info.py is a python file that allows the use of the Scraper Parent python file
+to retrieve the overall basic info which either performs different utilities
+such as displaying all APT groups or the all the information of the specific
+APT group.
+"""
+
+import requests
 from bs4 import BeautifulSoup
 from .MITRE_Scraper import Scraper
 
@@ -9,13 +16,34 @@ INDEX_ONE = 1
 
 class APT_Info(Scraper):
     def __init__(self):
+        """
+        Initialise the Parent Class "Scraper".
+        """
         Scraper.__init__(self)
 
     def all(self, filename=None):
+        """Returns a dataframe of all of the basic information from the APT groups.
+
+        Args:
+            filename (str, optional): filename. Defaults to None.
+
+        Returns:
+            Pandas.DataFrame: Overall information of all of the APT groups.
+        """
         res_df = self.display_all(filename)
         return res_df
 
     def display_apt_info(self, group_name):
+        """Returns a dictionary of dataframes based on the headers found in
+        the webpage of the specific APT group.
+
+        Args:
+            group_name (str): Group found in the list of APT groups.
+
+        Returns:
+            dict: Dictionary of dataframes based on the headers found in the
+            Webpage.
+        """
         res_df = self.find(group_name)
         dict_of_res_dfs = {'Basic Info': res_df}
         ref_link = res_df.loc[group_name]["ID"]
