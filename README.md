@@ -30,7 +30,7 @@ result_df = apt_info_obj.all()
 # Returns a Pandas.Dataframe with all the information
 ```
 
-Refer to "basic_info" folder, all APT groups basic information.
+Refer to "csv results" folder, all APT groups basic information.
 
 ### Displaying all the information of the specific APT group
 
