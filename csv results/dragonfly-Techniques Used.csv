@@ -1,0 +1,4 @@
+,Domain,ID,Name,Use,References
+0,Enterprise,T1189,Drive-by Compromise,Dragonfly has has compromised targets via strategic web compromise (SWC) utilizing a custom exploit kit.[2],"Dragonfly:/groups/G0035, [2]:https://www.secureworks.com/research/resurgent-iron-liberty-targeting-energy-sector"
+1,Enterprise,T1566,Phishing,Dragonfly has used spearphising campaigns to gain access to victims.[2],"Dragonfly:/groups/G0035, [2]:https://www.secureworks.com/research/resurgent-iron-liberty-targeting-energy-sector"
+2,Enterprise,T1195/.002,"Supply Chain Compromise, Compromise Software Supply Chain",Dragonfly has placed trojanized installers on legitimate vendor app stores.[2],"Dragonfly:/groups/G0035, [2]:https://www.secureworks.com/research/resurgent-iron-liberty-targeting-energy-sector"

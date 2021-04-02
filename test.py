@@ -2,14 +2,12 @@ from MITRE import APT_Info
 
 
 def main():
-    y = APT_Info()
-    # res_df = y.all()
-    # res_df.to_csv("res.csv")
-    res_df = y.display_apt_info("Dragonfly")
-    # res_df.to_csv("res.csv")
-    for index in res_df.keys():
-        print(res_df[index])
-        res_df[index].to_csv(f"res{index}.csv")
+    apt_info_obj = APT_Info()
+    result_df = apt_info_obj.all()
+    result_df.to_csv("basic_info.csv")
+    apt_dragonfly_dictionary = apt_info_obj.display_apt_info("Dragonfly")
+    for index in apt_dragonfly_dictionary.keys():
+        apt_dragonfly_dictionary[index].to_csv(f"dragonfly-{index}.csv")
 
 
 if __name__ == "__main__":
