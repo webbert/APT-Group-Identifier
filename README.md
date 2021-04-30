@@ -40,4 +40,15 @@ apt_dragonfly_dictionary = apt_info_obj.display_apt_info("Dragonfly")
 # Dictionary contains different headers of the APT
 ```
 
-Refer to csv files with "Dragonfly" folder, all APT groups basic information.
+Refer to csv files with "Dragonfly", all APT groups basic information.
+
+## Addtional test
+
+Digital Forensics Specialist and Threat Hunting Analysts has always determine an APT cyber espionage by distinguishing their TTPs (Tatics, Techniques and Procedures). 
+
+I have tested by using machine learning to train a model to see whether I can determine the APT group by the techniques used. I
+
+For this Proof Of Concept, I used DecisionTreeClassifier as a model. Further testing should be dibe as the current results does not seem to be accurate.
+
+Execute train_mode.py, followed by ProofOfConcept.py.
+Do refer to ProofofConcept python script to execute.
