@@ -93,6 +93,7 @@ class Scraper(Utilities):
         Returns:
             Pandas.DataFrame: The selected APT group Pandas DataFrame.
         """
+        print(self.overview_df.head)
         res_df = self.overview_df.loc[[group_name]]
         if res_df.empty:
             return None

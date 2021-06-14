@@ -36,7 +36,7 @@ Refer to "csv results" folder, all APT groups basic information.
 
 ```python
 apt_info_obj = APT_Info()
-apt_dragonfly_dictionary = apt_info_obj.display_apt_info("Dragonfly")
+apt_dragonfly_dictionary = apt_info_obj.display_apt_info("G0035") # Dragonfly Group Code
 # Dictionary contains different headers of the APT
 ```
 
