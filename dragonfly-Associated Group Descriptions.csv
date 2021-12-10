@@ -1,0 +1,5 @@
+,Name,Description,References
+0,TG-4192,[2],[2]:https://www.secureworks.com/research/resurgent-iron-liberty-targeting-energy-sector
+1,Crouching Yeti,[2],[2]:https://www.secureworks.com/research/resurgent-iron-liberty-targeting-energy-sector
+2,IRON LIBERTY,[2][6][7],"[2]:https://www.secureworks.com/research/resurgent-iron-liberty-targeting-energy-sector, [6]:https://www.secureworks.com/research/mcmd-malware-analysis, [7]:https://www.secureworks.com/research/updated-karagany-malware-targets-energy-sector"
+3,Energetic Bear,[1][2][6][7],"[1]:http://www.symantec.com/content/en/us/enterprise/media/security_response/whitepapers/Dragonfly_Threat_Against_Western_Energy_Suppliers.pdf, [2]:https://www.secureworks.com/research/resurgent-iron-liberty-targeting-energy-sector, [6]:https://www.secureworks.com/research/mcmd-malware-analysis, [7]:https://www.secureworks.com/research/updated-karagany-malware-targets-energy-sector"
