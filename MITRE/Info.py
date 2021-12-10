@@ -78,7 +78,7 @@ class APT_Info(Scraper):
                 if len(data) == 5:
                     main_link = data.pop(INDEX_ONE).text.strip()
                     add_link = data[INDEX_ONE].text.strip()
-                    new_link = main_link + "/" + add_link
+                    new_link = main_link + add_link
                     data[INDEX_ONE].string = new_link
                 for index_2 in range(len(data)):
                     if data[index_2].find("p"):
